@@ -4,6 +4,7 @@ import {
   mysqlTable,
   primaryKey,
   varchar,
+  mysqlEnum,
 } from "drizzle-orm/mysql-core";
 import type { AdapterAccount } from "next-auth/adapters";
 
@@ -30,6 +31,7 @@ export const users = mysqlTable("user", {
     fsp: 3,
   }),
   image: varchar("image", { length: 255 }),
+  role: mysqlEnum("role", ["admin", "user"]).default("user").notNull(),
 });
 
 export const accounts = mysqlTable(
