@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, LogOut } from "lucide-react";
 import { auth, signOut } from "@/lib/auth";
 
 const NavBar = async () => {
@@ -45,9 +45,14 @@ const NavBar = async () => {
                           await signOut();
                         }}
                       >
-                        <div className="flex justify-between">
-                          <Button type="submit" variant="destructive">
-                            Sign out
+                        <div className="flex justify-center">
+                          <Button
+                            type="submit"
+                            variant="destructive"
+                            className="gap-x-1"
+                          >
+                            <LogOut className="h-4 w-4" />
+                            Sign me out
                           </Button>
                           {/* <Button type="button">Cancel</Button> */}
                         </div>

@@ -20,8 +20,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <NavBar />
-        {children}
-        <Footer />
+        <div className="flex grainy-light flex-col min-h-[calc(100vh-3.5rem-1px)]">
+          <main className="flex-1 flex flex-col h-full w-full">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
