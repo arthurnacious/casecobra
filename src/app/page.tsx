@@ -106,8 +106,8 @@ export default function Home() {
             <div className="relative md:max-w-xl">
               <Image
                 src="/your-image.png"
-                width={100}
-                height={100}
+                width={160}
+                height={160}
                 alt="your image"
                 className="absolute w-40 lg:w-53 left-56 -top-20 select-none hidden sm:block lg:hidden xl:block"
               />
