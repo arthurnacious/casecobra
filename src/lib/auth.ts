@@ -1,5 +1,7 @@
 import { db } from "@/db";
+import { users } from "@/db/schema";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { sql } from "drizzle-orm";
 import NextAuth, { DefaultSession } from "next-auth";
 import { Provider } from "next-auth/providers";
 import github, { GitHubProfile } from "next-auth/providers/github";
@@ -27,13 +29,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: providers,
   adapter: DrizzleAdapter(db),
   callbacks: {
-    session({ session, token, user }) {
-      // console.log(user.role);
+    async session({ session, token, user }) {
+      const dbUser = await db.query.users.findFirst({
+        where: sql`${users.id} = ${session.user.id}`,
+      });
+      console.log({ dbUser });
       return {
         ...session,
         user: {
           ...session.user,
-          role: "admin",
+          role: dbUser?.role ?? "user",
         },
       };
     },
